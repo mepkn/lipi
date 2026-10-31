@@ -15,7 +15,8 @@ Live: https://syntax-party.pknspace.com
 - **⌘K search** to jump to any feature. Every feature has a linkable anchor (`#loops--for`).
 - **Light and dark themes**, and a copy button on every snippet.
 - **Edit on the site.** Allowlisted editors sign in with email and password, then edit
-  snippets in a code editor. They can also mark a snippet "not applicable" with a reason,
+  snippets in a code editor. Sign-up asks for a 6-digit code sent by email, and
+  "Forgot password?" resets the password with a code too. They can also mark a snippet "not applicable" with a reason,
   view history and restore old versions, and add, rename, reorder or delete sections and
   features. Changes appear live in every open tab.
 
@@ -50,7 +51,8 @@ For non-interactive runs (CI or agents), use `CONVEX_AGENT_MODE=anonymous npx co
 1. Add your email to the allowlist: `npx convex env set ALLOWED_EMAILS you@example.com`
    (comma-separate multiple editors).
 2. Click the sign-in icon at the top right, choose **"First time? Create your editor
-   account"**, and enter that email and a password of at least 8 characters.
+   account"**, and enter that email and a password of at least 8 characters. Locally the
+   6-digit code is not emailed: it is printed in the `npm run dev` output.
 
 ### Content for local development
 
@@ -101,6 +103,9 @@ One-time setup:
    npx convex env set --prod SITE_URL https://syntax-party.pknspace.com
    npx convex env set --prod ALLOWED_EMAILS you@example.com
    ```
+   `RESEND_API_KEY` (sends the codes) is set with `../scripts/set-resend-key.sh syntax-party`
+   from the parent folder's scripts: copy the Resend key `syntax-party-api-key`, then run it;
+   it reads the key from the clipboard and never prints it.
 4. Deploy once (below), then create your editor account at `/edit`.
 
 Deploy:
@@ -127,6 +132,9 @@ scripts/deploy.sh             # checks, deploy backend/convex/, build with the p
   Restoring a version creates a new revision, so a restore can be undone too.
 - **Conflicts.** The editor sends the `updatedAt` it started from. If someone saved in
   between, the save is refused and the editor offers "Overwrite" or "Discard mine".
+- **Email codes.** `backend/convex/otp.ts` sends the 6-digit codes through Resend from
+  `noreply@send.pknspace.com`: one to verify the email at sign-up, one for "Forgot
+  password?". Without `RESEND_API_KEY` (local dev) the code is only logged.
 - **Security.** Sign-up and sign-in are rejected for emails not in `ALLOWED_EMAILS`, and
   every write calls `requireEditor(ctx)`. Removing an email from the list removes the
   editing UI and makes every write throw for that user.
