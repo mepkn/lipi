@@ -17,7 +17,6 @@ import type * as lib_limits from "../lib/limits.js";
 import type * as lib_requireEditor from "../lib/requireEditor.js";
 import type * as lib_slug from "../lib/slug.js";
 import type * as lib_text from "../lib/text.js";
-import type * as migrations from "../migrations.js";
 import type * as otp from "../otp.js";
 import type * as snippets from "../snippets.js";
 
@@ -37,7 +36,6 @@ declare const fullApi: ApiFromModules<{
   "lib/requireEditor": typeof lib_requireEditor;
   "lib/slug": typeof lib_slug;
   "lib/text": typeof lib_text;
-  migrations: typeof migrations;
   otp: typeof otp;
   snippets: typeof snippets;
 }>;
