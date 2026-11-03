@@ -1,10 +1,10 @@
-# syntax-party
+# Lipi
 
 The same programming concepts side by side in JavaScript, Python, Go, Ruby, Rust, Kotlin
 and Swift. Pick up to four languages and compare them feature by feature. Inspired by
 [component-party.dev](https://component-party.dev/), but for languages.
 
-Live: https://syntax-party.pknspace.com
+Live: https://lipi.pknspace.com
 
 ## Features
 
@@ -91,8 +91,8 @@ static `web/dist/` (no restart needed). `scripts/deploy.sh` does both.
 One-time setup:
 
 1. Create a Convex cloud project and a **production deploy key**. In `backend/`:
-   `npx convex deployment token create syntax-party-deploy --deployment
-   praveen-nirmalkar:syntax-party:production --save-env .env.prod.local`.
+   `npx convex deployment token create lipi-deploy --deployment
+   praveen-nirmalkar:lipi:production --save-env .env.prod.local`.
 2. Each part keeps its production settings in its own `.env.prod.local` (git-ignored; see the
    `.env.example` next to each): `backend/.env.prod.local` has `CONVEX_DEPLOY_KEY`, and
    `web/.env.prod.local` has `DEPLOY_HOST`, `DEPLOY_PORT` and `DEPLOY_DIR`. You also need SSH
@@ -100,11 +100,11 @@ One-time setup:
 3. Set the Convex-side env vars on the **production** deployment, in `backend/`:
    ```bash
    node scripts/setup-auth-keys.ts --apply --prod
-   npx convex env set --prod SITE_URL https://syntax-party.pknspace.com
+   npx convex env set --prod SITE_URL https://lipi.pknspace.com
    npx convex env set --prod ALLOWED_EMAILS you@example.com
    ```
-   `RESEND_API_KEY` (sends the codes) is set with `../scripts/set-resend-key.sh syntax-party`
-   from the parent folder's scripts: copy the Resend key `syntax-party-api-key`, then run it;
+   `RESEND_API_KEY` (sends the codes) is set with `../scripts/set-resend-key.sh lipi`
+   from the parent folder's scripts: copy the Resend key `lipi-api-key`, then run it;
    it reads the key from the clipboard and never prints it.
 4. Deploy once (below), then create your editor account at `/edit`.
 

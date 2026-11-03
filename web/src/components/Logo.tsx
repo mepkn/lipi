@@ -4,7 +4,7 @@ export function Logo() {
       <span aria-hidden className="grid size-7 place-items-center rounded-md bg-primary font-mono text-xs text-primary-foreground">
         {"</>"}
       </span>
-      syntax-party
+      Lipi
     </a>
   );
 }

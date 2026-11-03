@@ -1,6 +1,6 @@
 import Resend from "@auth/core/providers/resend";
 
-const FROM = "syntax-party <noreply@send.pknspace.com>";
+const FROM = "Lipi <noreply@send.pknspace.com>";
 
 /** A 6-digit code; the modulo bias over 2^32 is negligible. */
 function code(): string {
@@ -33,8 +33,8 @@ export const ResendOTP = Resend({
   async sendVerificationRequest({ identifier: email, token }) {
     await sendCode(
       email,
-      `${token} is your Syntax Party code`,
-      `Your Syntax Party verification code is ${token}. It expires in 15 minutes.`,
+      `${token} is your Lipi code`,
+      `Your Lipi verification code is ${token}. It expires in 15 minutes.`,
     );
   },
 });
@@ -48,8 +48,8 @@ export const ResendOTPReset = Resend({
   async sendVerificationRequest({ identifier: email, token }) {
     await sendCode(
       email,
-      `${token} is your Syntax Party reset code`,
-      `Your Syntax Party password reset code is ${token}. It expires in 15 minutes. If you didn't ask for it, ignore this email.`,
+      `${token} is your Lipi reset code`,
+      `Your Lipi password reset code is ${token}. It expires in 15 minutes. If you didn't ask for it, ignore this email.`,
     );
   },
 });
